@@ -1,0 +1,24 @@
+<ion-slides mode="ios" scrollbar="ios" [options]="slideOpts">
+
+  <ion-slide *ngFor="let pares of peliculas | pares">
+    <ion-row>
+      <ion-col size="12" *ngFor="let pelicula of pares">
+
+        <!--la idea es que el segundo ngfor creara las columnas de forma dinamica
+        en razon de los elementos del pipe pares donde genera de a dos fotitos-->
+        <ion-card mode="md" (click)="mostrarPelicula( pelicula.id )">     
+          <ion-img class="poster" [src]="pelicula.poster_path | imagen"></ion-img>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-slide>
+
+  <ion-slide class="slide-mas">
+
+    <ion-button class="btn-mas" (click)="cargarMasPeliculas()" expand="full" size="large">
+      <ion-icon slot="icon-only" name="add"></ion-icon>
+    </ion-button>
+
+  </ion-slide>  
+</ion-slides>

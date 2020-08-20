@@ -1,0 +1,15 @@
+<ion-slides mode="ios" scrollbar="ios" [options]="slideOpts">
+
+  <ion-slide *ngFor="let pelicula of peliculas">
+
+    <ion-card mode="md" *ngIf="pelicula.poster_path; else elseTemplate" (click)="mostrarPelicula( pelicula.id )">     
+      <!--se que el pipe para pasar la imagen se llama asi porque es el nombre que tiene en el pipe.ts-->
+      <ion-img class="poster" [src]="pelicula.poster_path | imagen"></ion-img>
+    </ion-card>
+    <ng-template #elseTemplate>
+      <img src="../../../assets/no-image-banner.jpg" style="margin-top: 25%;">
+    </ng-template>
+
+  </ion-slide>
+  
+</ion-slides>

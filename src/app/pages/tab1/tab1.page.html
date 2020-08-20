@@ -1,0 +1,26 @@
+<ion-content>
+
+  <ion-grid fixed>
+    <ion-row>
+      <h3 class="titulo-grid" style="padding-top: 3%;">¡Estrenos!</h3>
+    </ion-row>
+  </ion-grid>
+
+  <app-slideshow-backdrop [peliculas] = "peliculasRecientes" ></app-slideshow-backdrop>
+  
+  <ion-grid fixed>
+    <ion-row>
+      <p class="titulo-grid">¡Cartelera!</p>
+    </ion-row>
+  </ion-grid>
+  <app-slideshow-poster [peliculas] = "peliculasRecientes"></app-slideshow-poster>
+  
+  <ion-grid fixed>
+    <ion-row>
+      <p class="titulo-grid">¡Quiza te interese!</p>
+    </ion-row>
+  </ion-grid>
+  <app-slideshow-pares [peliculas] = "peliculasPopulares" (cargarMas)="cargarMas()"></app-slideshow-pares>
+
+  
+</ion-content>

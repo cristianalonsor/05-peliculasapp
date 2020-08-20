@@ -1,0 +1,58 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-title>
+      Busquda de Péliculas
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-toolbar>
+
+  <ion-searchbar placeholder="Buscar por Nombre" 
+                 animated
+                 debounce="700"
+                 [value]="txtBuscar"
+                 (ionChange)="buscar($event)">
+  </ion-searchbar>
+
+</ion-toolbar>
+
+<ion-content>
+  <!--mostrara un spinner mientras se realiza la busqueda de la peliocula en cuestion-->
+              <!--buscando como propiedad del iongrid poniendole verdadero o falso en razon de si busca o no 
+              asi lo manejo en el page.ts para activarlo o desactivarlo si es que realizo o no realizo una 
+              busqieda de peliculas-->
+  <ion-grid fixed *ngIf="buscando">
+    <ion-row>
+      <ion-col text-center>
+        <ion-spinner name="lines"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list *ngIf="peliculaEncontrada.length === 0">
+    <ion-list-header>
+      <ion-label>Ideas</ion-label>
+    </ion-list-header><!--con el clkicl modifico directamente la variable txtbuscar por loq ue trae la idea-->
+    <ion-item *ngFor="let idea of ideas" (click)="txtBuscar = idea">
+      <ion-label color="primary">{{ idea }}</ion-label>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="6" *ngFor="let pelicula of peliculaEncontrada" >
+
+        <ion-card (click)="mostrarPelicula( pelicula.id )">
+          <ion-img [src]="pelicula.poster_path | imagen"></ion-img>
+
+          <ion-card-header>
+            <ion-card-subtitle>{{pelicula.title}}</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
